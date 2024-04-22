@@ -34,7 +34,7 @@ int main() {
         if (IsKeyDown(KEY_D)) playerX += speed;
 
         if (playerX < 0) playerX = 0;
-        if (playerX > WINDOW_WIDTH - player.height) playerX = WINDOW_WIDTH - player.height;
+        if (playerX > WINDOW_WIDTH - player.width) playerX = WINDOW_WIDTH - player.width;
 
         // Move ball
         ball.position.x += ball.velocity.x;
