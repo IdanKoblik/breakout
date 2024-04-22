@@ -7,13 +7,15 @@
 #define BLOCK_SPACING 3
 #define NUM_ROWS 3
 
+int deathRate = 0;
+
 int getBlocksNum(int screenWidth) {
     int blocksInRow = (screenWidth + BLOCK_SPACING) / (BLOCK_WIDTH + BLOCK_SPACING);
     return blocksInRow * NUM_ROWS;
 }
 
-void placeBlocks(Block* blocks, int numBlocks, int screenWidth) {
-    Vector2 startPos = {9};
+void placeBlocks(Block* blocks, int numBlocks) {
+    Vector2 startPos = {9, 20};
     int index = 0;
 
     // Initialize blocks and place them
@@ -30,4 +32,9 @@ void placeBlocks(Block* blocks, int numBlocks, int screenWidth) {
 
 void removeBlock(Block *block) {
     block->exists = 0;
+    deathRate++;
+}
+
+int getDeathRate() {
+    return deathRate;
 }
