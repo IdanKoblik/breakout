@@ -14,14 +14,14 @@ int main() {
     Window gameWindow;
     const char TITLE[] = "Breakout game";
     createWindow(&gameWindow, TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
-    SetTargetFPS(TARGET_FPS);
     InitWindow(gameWindow.width, gameWindow.height, gameWindow.title);
+    SetTargetFPS(TARGET_FPS);
 
     int numBlocks = getBlocksNum(WINDOW_WIDTH);
 
     // Allocate memory for the array of blocks
     Block* blocks = (Block*)malloc(numBlocks * sizeof(Block));
-    placeBlocks(blocks, numBlocks, WINDOW_WIDTH);
+    placeBlocks(blocks, numBlocks);
 
     const float speed = ENTITY_SPEED * DELTA / TARGET_FPS;
     const Color entityColor = WHITE;
@@ -41,6 +41,9 @@ int main() {
         ball.position.y += ball.velocity.y;
 
         if (isOutOfBorder(&ball))
+            break;
+
+        if (getDeathRate() == numBlocks)
             break;
 
         BeginDrawing();
